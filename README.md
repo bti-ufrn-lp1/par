@@ -1,22 +1,24 @@
-# Tempo
+# Par
 
 ## Sobre
-Este programa serve à demonstração do mecanismo de sobrecarga de operadores oferecido pela linguagem de programação C++ utilizando uma classe que representa um instante de tempo.
+Este programa serve à demonstração do uso de *templates* de classes na linguagem de programação C++ utilizando classes que representam pares ordenados. A classe `Par` representa um par ordenado de dois elementos genéricos e a classe `ParNomeado`, a qual faz uso da classe `Par`, representa um par ordenado (também genérico) com um nome.
 
 ## Estrutura do projeto
-Primando pela modularização, a definição e a implementação da classe `Tempo` está separada em um arquivo cabeçalho [`tempo.h`](include/tempo.h) e de corpo [`tempo.cpp`](src/tempo.cpp). O arquivo [`main.cpp`](src/main.cpp) correspondente à implementação da função principal do programa. Os arquivos deste projeto estão assim organizados de acordo com a seguinte estrutura:
+Primando pela modularização, a definição e a implementação das classes `Par` e `ParNomeado` está separada em arquivos cabeçalho [`par.h`](include/par.h) e [`parnomeado.h`](include/parnomeado.h) e de corpo [`par.cpp`](include/par.cpp) e [`parnomeado.cpp`](include/parnomeado.cpp). Devido ao uso de *template* de classes, esses arquivos cabeçalho e de corpo encontram-se no mesmo diretório, para maior portabilidade da implementação em não depender de caminhos relativos. Por sua vez, o arquivo [`main.cpp`](src/main.cpp) correspondente à implementação da função principal do programa. Os arquivos deste projeto estão assim organizados de acordo com a seguinte estrutura:
 
 ```
-+─tempo               ---> Nome do diretório do projeto
-  ├─── CMakeLists.txt ---> Script de configuração do cmake
-  ├─── Doxyfile       ---> Arquivo de configuração para geração de documentação com Doxygen
-  ├─── build          ---> Diretório onde os arquivos executáveis serão gerados
-  ├─── doc            ---> Diretório onde a documentação em HTML será gerada
-  ├─── include        ---> Diretório que contém os arquivos cabeçalho (.h)
-       └─── tempo.h   ---> Arquivo cabeçalho referente à definição da classe Tempo
-  └─── src            ---> Diretório que contém os arquivos corpo (.cpp)
-       └─── main.cpp  ---> Arquivo fonte contendo a implementação da função principal do programa
-       └─── tempo.cpp ---> Arquivo fonte referente à implementação da classe Tempo
++─par                      ---> Nome do diretório do projeto
+  ├─── CMakeLists.txt      ---> Script de configuração do cmake
+  ├─── Doxyfile            ---> Arquivo de configuração para geração de documentação com Doxygen
+  ├─── build               ---> Diretório onde os arquivos executáveis serão gerados
+  ├─── doc                 ---> Diretório onde a documentação em HTML será gerada
+  ├─── include             ---> Diretório que contém os arquivos cabeçalho (.h)
+       └─── par.h          ---> Arquivo cabeçalho referente à definição do template de classe Par
+       └─── par.cpp        ---> Arquivo fonte referente à implementação do template de classe Par
+       └─── parnomeado.h   ---> Arquivo cabeçalho referente à definição do template de classe ParNomeado
+       └─── parnomeado.cpp ---> Arquivo fonte referente à implementação do template de classe ParNomeado
+  └─── src                 ---> Diretório que contém os arquivos corpo (.cpp)
+       └─── main.cpp       ---> Arquivo fonte contendo a implementação da função principal do programa
 ```
 
 ## Requisitos
@@ -32,12 +34,11 @@ No terminal do sistema operacional, insira os seguintes comandos para realizar o
 
 ```bash
  # Download da implementação a partir do repositório Git
- git clone https://github.com/bti-ufrn-lp1/tempo.git
+ git clone https://github.com/bti-ufrn-lp1/par.git
  
  # Navegação para o diretório
- cd tempo
+ cd par
 ```
-Caso se queira utilizar o *makefile* escrito manualmente, insira o seguinte comando no terminal do sistema operacional para compilar o programa:
 
 Em seguida, insira os seguintes comandos no terminal do sistema operacional para gerar automaticamente o *makefile* e, em seguida, compilar o programa:
 
@@ -53,11 +54,11 @@ Em seguida, insira os seguintes comandos no terminal do sistema operacional para
  cmake --build .
 ```
 
-Esses comandos irão gerar, além de um conjunto de arquivos e diretórios resultantes dos processos de compilação e ligação do programa, o arquivo executável do programa, ``tempo``, no diretório ``build``.
+Esses comandos irão gerar, além de um conjunto de arquivos e diretórios resultantes dos processos de compilação e ligação do programa, o arquivo executável do programa, ``par``, no diretório ``build``.
 
 Finalmente, para executar o programa gerado, basta inserir o seguinte comando no terminal do sistema operacional (a partir do diretório `build`):
 
 ```bash
- ./tempo
+ ./par
 ```
-Nesse caso, o programa irá requisitar os valores de horas, minutos e segundos para dois instantes de tempo e exibir na saída padrão o resultado da soma destes.
+Nesse caso, o programa irá imprimir três pares ordenados definidos estaticamente no corpo do programa principal.
